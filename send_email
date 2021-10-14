@@ -1,0 +1,57 @@
+'==================================================================
+ Sub Send_Email()
+'==================================================================
+
+    Dim strPath As String, strFName As String, strbody As String
+    Dim OutApp As Object, OutMail As Object
+    Dim answer As Integer
+    Dim FileExtStr As String
+    Dim FileFormatNum As Long
+    Dim Sourcewb As Workbook
+    Dim Destwb As Workbook
+    Dim TempFilePath As String
+    Dim TempFileName As String
+    
+    'Promt for user input to create e-mail and attach current sheet.
+    'answer = MsgBox("E-mail Completed Repair Part Form?", vbYesNo + vbQuestion, "Submit Repair Part Form")
+    'If answer = vbYes Then
+    '    With Application
+    '    .ScreenUpdating = False
+    '    .EnableEvents = False
+    'End With
+           
+    'Set up outlook
+    Set OutApp = CreateObject("Outlook.Application")
+    Set OutMail = OutApp.CreateItem(0)
+        strbody = "<BODY style=font-size:11pt;font-family:Calibri>Hello " & Range("To_First_Name").Value & "," & "<br><br>" & "Please find the attached, " & "ICN: " & ActiveSheet.Range("B6").Value & ", " & "S/N: " & ActiveSheet.Range("B9").Value & ", " & ActiveSheet.Range("I6").Value & ", " & ActiveSheet.Range("I9").Value & " " & ActiveSheet.Range("D9") & "."
+
+    'Create message
+    On Error Resume Next
+    
+    With OutMail
+        .Display
+        .To = Range("To_Email").Value
+        .CC = Range("CC_Email").Value
+        .BCC = ""
+        
+        .Subject = "COMPLETED - Report: " & ActiveSheet.Range("B6").Value & ", " & "S/N: " & ActiveSheet.Range("B9").Value & ", " & ActiveSheet.Range("I6").Value & ", " & ActiveSheet.Range("I9").Value & " " & ActiveSheet.Range("D9") & "."
+        
+        .HTMLBody = strbody & "<br>" & .HTMLBody
+        .Attachments.Add ActiveWorkbook.FullName
+
+    End With
+    
+    'Delete any temp files created
+    Kill strPath & strFName & TempFilePath & TempFileName & FileExtStr
+    On Error GoTo 0
+    Set OutMail = Nothing
+    Set OutApp = Nothing
+    
+'Else
+    'do nothing
+'End If
+
+End Sub
+
+
+
