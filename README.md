@@ -2,6 +2,9 @@
 Save an Excel sheet based on cell data and email as an Outlook attachment with VBA macros.
 This will help save some time with complicated file naming schemes, reduce redundant data entry while reducing errors.
 
+Don't rely on the files in this repository for the code, they are here just for reference. It's best to use the contents of the .xlsx macros that way all of the form data and objects are in once place.
+
+Instructions:
 
 Download the Excel sheet and enable macros.
 Customize the quick access toolbar in Excel.
