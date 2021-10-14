@@ -1,4 +1,4 @@
-# excel_email_automation
+# excel_outlook_automation
 Save an Excel sheet based on cell data and email as an Outlook attachment with VBA macros.
 This will help save some time with complicated file naming schemes, reduce redundant data entry while reducing errors.
 
