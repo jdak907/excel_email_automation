@@ -1,0 +1,22 @@
+Sub Report_Save()
+
+Dim IntialName As String
+Dim fileSaveName As Variant
+Dim DateValue As String
+Dim ModelValue As String
+
+'Convert date format from form to expected format for filename
+DateValue = Format(ActiveSheet.Range("CompDate").Value, "dd_mmmm_yyyy")
+
+'Convert any spaces in the form Model cell to underscores to reflect expected format for filename
+ModelValue = Replace(ActiveSheet.Range("Model").Value, " ", "_")
+
+'Open "Save As..." dialogue window and populate "Filename:" field with filename based off of form data
+'Filename format example: AE_RFG3001_3155089-005C_ICN_3113_SN_288624_14_October_2020.xlsm
+InitialName = ModelValue & "_" & ActiveSheet.Range("PartNum").Value & "_ICN_" & ActiveSheet.Range("ICN").Value & "_SN_" & ActiveSheet.Range("Serial").Value & "_" & DateValue
+fileSaveName = Application.GetSaveAsFilename(InitialFileName:=InitialName, _
+     fileFilter:="Microsoft Excel Workbooks (*.xlsm),*.xlsm")
+ActiveWorkbook.SaveAs Path & fileSaveName, xlOpenXMLWorkbookMacroEnabled
+Application.DisplayAlerts = True
+'ActiveWorkbook.Close
+End Sub
