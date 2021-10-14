@@ -1,0 +1,7 @@
+Sub Report_Send()
+
+'To initialize the EmailReport UserForm and start the application. Add this to the Macro ribbon.
+
+EmailReport.Show
+
+End Sub
